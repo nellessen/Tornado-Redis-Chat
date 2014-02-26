@@ -1,1 +1,1 @@
-web: python app.py --port=$PORT --websocketport=80 --logging=warning
+web: python app.py --port=$PORT --logging=warning
