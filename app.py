@@ -5,6 +5,8 @@ import os.path
 import logging
 import sys
 from threading import Timer
+import string
+import random
 
 # Tornado modules.
 import tornado.ioloop
@@ -14,9 +16,6 @@ import tornado.auth
 import tornado.options
 import tornado.escape
 from tornado import gen
-
-# MongoDb modules.
-from bson.objectid import ObjectId
 
 # Redis modules.
 import brukva
@@ -118,7 +117,7 @@ class ChatSocketHandler(tornado.websocket.WebSocketHandler):
             # Parse input to message dict.
             datadecoded = tornado.escape.json_decode(data)
             message = {
-                '_id': str(ObjectId()),
+                '_id': ''.join(random.choice(string.ascii_uppercase) for i in range(12)),
                 'from': self.get_secure_cookie('user', str(datadecoded['user'])),
                 'body': tornado.escape.linkify(datadecoded["body"]),
             }

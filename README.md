@@ -22,7 +22,6 @@ sudo apt-get install redis-server
 Next you need the following python packages:
 ```Bash
 sudo pip install tornado
-sudo pip install bson
 sudo pip install git+https://github.com/evilkost/brukva.git
 ```
 Finally clone this repository:
