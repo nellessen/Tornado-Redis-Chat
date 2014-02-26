@@ -54,7 +54,7 @@ class BaseHandler(tornado.web.RequestHandler):
             kwargs['room'] = int(self.room)
         else: kwargs['room'] = None
         kwargs['apptitle'] = self.application.settings['apptitle']
-        kwargs['port'] = self.application.settings['port']
+        kwargs['port'] = self.application.settings['websocketport']
 
         if not self.request.connection.stream.closed():
             try:

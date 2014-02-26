@@ -27,6 +27,7 @@ from auth import LogoutHandler
 
 # Define port from command line parameter.
 tornado.options.define("port", default=8888, help="run on the given port", type=int)
+tornado.options.define("websocketport", default=8888, help="Use this port for websockets", type=int)
 
 
 
@@ -192,7 +193,7 @@ class Application(tornado.web.Application):
             db_name = 'chat',
             # apptitle used as page title in the template.
             apptitle = 'Chat example: Tornado, Redis, brukva, Websockets',
-            port = tornado.options.options.port
+            websocketport = tornado.options.options.websocketport
         )
 
         # Call super constructor.
