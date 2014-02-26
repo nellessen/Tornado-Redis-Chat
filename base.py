@@ -32,6 +32,7 @@ class BaseHandler(tornado.web.RequestHandler):
             return
         # Define a callback for the db query.
         def query_callback(result):
+            logging.debug(result)
             if result == "null" or not result:
                 logging.warning("User not found")
                 user = {}

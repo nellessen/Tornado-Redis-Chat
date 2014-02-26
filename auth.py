@@ -88,19 +88,18 @@ class LoginHandler(BaseHandler, tornado.auth.GoogleMixin):
             #@todo: We should check if email is given even though we can assume.
             if result == "null" or not result:
                 # If user does not exist, create a new entry.
-                self.application.client.set("user:" + user["email"],
-                                            tornado.escape.json_encode(user))
+                self.application.client.set("user:" + user["email"], tornado.escape.json_encode(user))
             else:
                 # Update existing user.
                 # @todo: Should use $set to update only needed attributes?
                 dbuser = tornado.escape.json_decode(result)
                 dbuser.update(user)
                 user = dbuser
-                self.application.client.set("user:" + user["email"],
-                                            tornado.escape.json_encode(user))
+                self.application.client.set("user:" + user["email"], tornado.escape.json_encode(user))
             
             # Save user id in cookie.
-            self.set_secure_cookie("user", str(user["email"]))
+            self.set_secure_cookie("user", user["email"])
+            self.application.usernames[user["email"]] = user.get("name") or user["email"]
             logging.warning("Cookie set")
             # Closed client connection
             if self.request.connection.stream.closed():
