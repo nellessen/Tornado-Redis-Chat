@@ -92,7 +92,6 @@
 
     {% if 'chat' in globals() and chat %}
         <!-- Application script -->
-        <script>application_port = {{ port }}</script>
         <script src="{{ static_url('app.js') }}" type="text/javascript"></script>
     {% end %}
   </body>

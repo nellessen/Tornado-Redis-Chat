@@ -2,7 +2,8 @@
  * Initiate global websocket object.
  * @todo: Add user cookie for authentication.
  */
-var ws = new WebSocket("ws://127.0.0.1:"+ application_port +"/socket/" + location.pathname.replace('/room/', '').replace('/', ''));
+var host = location.origin.replace(/^http/, 'ws')
+var ws = new WebSocket(host +"/socket/" + location.pathname.replace('/room/', '').replace('/', ''));
 
 
 /**
