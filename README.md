@@ -11,7 +11,7 @@ like [ninx](http://nginx.org/). It uses [brukva](https://github.com/evilkost/bru
 Redis client. Client-Server communication is based on [websockets](http://www.tornadoweb.org/en/stable/websocket.html).
 
 **Note**: Please note that this is just an example project for demonstration purpose only. It is little tested
-and missing imported features like authenticated websockets, input validation and so on. It is intended
+and missing important features like authenticated websockets, input validation and so on. It is intended
 to show how to build a scalable real-time web application with [Tornado](http://www.tornadoweb.org/).
 
 ## Requirements and Setup
