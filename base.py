@@ -32,7 +32,6 @@ class BaseHandler(tornado.web.RequestHandler):
             return
         # Define a callback for the db query.
         def query_callback(result):
-            logging.debug(result)
             if result == "null" or not result:
                 logging.warning("User not found")
                 user = {}
@@ -54,11 +53,11 @@ class BaseHandler(tornado.web.RequestHandler):
         if hasattr(self, 'room'):
             kwargs['room'] = int(self.room)
         else: kwargs['room'] = None
+        kwargs['apptitle'] = self.application.settings['apptitle']
+        kwargs['port'] = self.application.settings['port']
 
-        
         if not self.request.connection.stream.closed():
             try:
-                self.render(template_name,
-                    apptitle=self.application.settings['apptitle'], **kwargs)
+                self.render(template_name, **kwargs)
             except: pass
     

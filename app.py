@@ -191,7 +191,8 @@ class Application(tornado.web.Application):
             # Set this to your desired database name.
             db_name = 'chat',
             # apptitle used as page title in the template.
-            apptitle = 'Chat example: Tornado, Redis, brukva, Websockets'
+            apptitle = 'Chat example: Tornado, Redis, brukva, Websockets',
+            port = tornado.options.options.port
         )
 
         # Call super constructor.

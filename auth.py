@@ -100,7 +100,6 @@ class LoginHandler(BaseHandler, tornado.auth.GoogleMixin):
             # Save user id in cookie.
             self.set_secure_cookie("user", user["email"])
             self.application.usernames[user["email"]] = user.get("name") or user["email"]
-            logging.warning("Cookie set")
             # Closed client connection
             if self.request.connection.stream.closed():
                 logging.warning("Waiter disappeared")
