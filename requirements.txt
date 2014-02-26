@@ -1,2 +1,2 @@
 tornado
-redis-server
+-e git://github.com/evilkost/brukva.git#egg=brukva
