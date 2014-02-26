@@ -87,8 +87,22 @@ class ChatSocketHandler(tornado.websocket.WebSocketHandler):
             return
         self.room = str(room)
         self.new_message_send = False
+        # Get Redis connection settings for Heroku with fallback to defaults.
+        redistogo_url = os.getenv('REDISTOGO_URL', None)
+        if redistogo_url == None:
+            REDIS_HOST = 'localhost'
+            REDIS_PORT = 6379
+            REDIS_PWD = None
+            REDIS_USER = None
+        else:
+            redis_url = redistogo_url
+            redis_url = redis_url.split('redis://')[1]
+            redis_url = redis_url.split('/')[0]
+            REDIS_USER, redis_url = redis_url.split(':', 1)
+            REDIS_PWD, redis_url = redis_url.split('@', 1)
+            REDIS_HOST, REDIS_PORT = redis_url.split(':', 1)
         # Connect to redis.
-        self.client = brukva.Client()
+        self.client = brukva.Client(host=REDIS_HOST, port=int(REDIS_PORT), password=REDIS_PWD)
         self.client.connect()
         # Subscribe to the given chat room.
         self.client.subscribe(self.room)
