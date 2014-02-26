@@ -14,6 +14,9 @@ Redis client. Client-Server communication is based on [websockets](http://www.to
 and missing important features like authenticated websockets, input validation and so on. It is intended
 to show how to build a scalable real-time web application with [Tornado](http://www.tornadoweb.org/).
 
+## Example
+You can try out a running demo of this application here: [tornado-redis-chat.herokuapp.com](http://tornado-redis-chat.herokuapp.com/)
+
 ## Requirements and Setup
 First of all you need Redis:
 ```Bash
@@ -35,3 +38,4 @@ You can run the application on a specific port like that:
 ```Bash
 python app.py --port=8888
 ```
+Open `localhost:8888` in your browser and see the result!
